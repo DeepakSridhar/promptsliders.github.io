@@ -1,6 +1,6 @@
 # FG-DM
 
-This is the repository that contains source code for the [FG-DM website](https://factorgraphdiffusion.github.io).
+This is the repository that contains source code for the [FG-DM website](https://deepaksridhar.github.io/factorgraphdiffusion.github.io).
 
 If you find FG-DM useful for your work please cite:
 ```
