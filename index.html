@@ -228,10 +228,25 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present a novel Factor Graph Diffusion Model (FG-DM) framework for modeling the joint distribution of images and conditioning variables (segmentation, depth, normal and canny masks) for high fidelity, consistent and controllable image synthesis.
+            We present a novel Factor Graph Diffusion Model (FG-DM) framework for modeling 
+            the joint distribution of images and conditioning variables (such as segmentation, 
+            depth, normal and canny masks) for high fidelity, consistent and controllable image 
+            synthesis.
           </p>
           <p>
-            FG-DMs implement a factor graph of the conditioning variables in a sequential process where the highest node corresponds to the image denoising Markov chain conditioned by all or few of the conditioning variables in the lower levels of the graph. This joint structure has several advantages, including ability to synthesize all conditioning variables with/without user input, end-to-end training, support for detailed user interaction and fine-grained editing, ability to produce labeled datasets for the training of downstream models, training with missing data, and continual learning where new conditioning variables can be added with minimal or no modifications to the existing structure. To demonstrate this, two implementations of FG-DM are introduced (i) training from scratch and (ii) adapting pretrained foundational model. Experiments on multiple benchmark datasets such as CelebAMask-HQ, ADE20K, Cityscapes and CoCo produce images of high quality (FID) and achieves state-of-the-art diversity in terms of LPIPS metrics.
+            FG-DMs implement a factor graph of the conditioning variables in a sequential process 
+            where the highest node corresponds to the image denoising Markov chain conditioned by 
+            all or few of the conditioning variables in the lower levels of the graph. This joint 
+            structure has several advantages, including ability to synthesize all conditioning 
+            variables with/without user input, end-to-end training, support for detailed user 
+            interaction and fine-grained editing, ability to produce labeled datasets for the 
+            training of downstream models, training with missing data, and continual learning 
+            where new conditioning variables can be added with minimal or no modifications to 
+            the existing structure. To demonstrate this, two implementations of FG-DM are 
+            introduced (i) training from scratch and (ii) adapting pretrained foundational model. 
+            Experiments on multiple benchmark datasets such as CelebAMask-HQ, ADE20K, Cityscapes 
+            and CoCo produce images of high quality (FID) and achieves state-of-the-art diversity 
+            in terms of LPIPS metrics.
           </p>
         </div>
       </div>
@@ -407,10 +422,10 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
+      <!-- <a class="icon-link"
          href="./static/videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
-      </a>
+      </a> -->
       <a class="icon-link" href="https://github.com/DeepakSridhar" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
@@ -419,9 +434,9 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is borrowed from nerfies<a rel="nerfies"
+            This website template is borrowed from <a rel="nerfies"
                                                 href="https://github.com/nerfies/nerfies.github.io">
-                                          </a>.
+                                          </a>nerfies.
           </p>
         </div>
       </div>
