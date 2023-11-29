@@ -257,20 +257,6 @@
   <div class="container is-max-desktop">
 
     <div class="columns is-centered">
-
-      <!-- Teaser. -->
-      <div class="column">
-        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, canny and normal maps</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              Condition/image pairs synthesized by FG-DMs of the joint distribution $P({\bf x},{\bf y})$ of image $\bf x$ and condition $\bf y$. The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
-            </p>
-            <img src="./static/images/teaser.png"
-                 class="interpolation-image"
-                 alt="Image synthesis by FG-DMs."/>
-          </div>
-
       <!-- Editing. -->
       <div class="column">
         <h2 class="title is-3">Qualitative results of Image Editing</h2>
@@ -289,6 +275,27 @@
       </div>
     </div>
     <!--/ Matting. -->
+    
+    <!-- Teaser. -->
+    <div class="columns is-centered">
+      <!-- Editing. -->
+      <div class="column">
+        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, canny and normal maps</h2>
+            <div class="columns is-centered">
+              <div class="column content">
+                <p>
+                  Condition/image pairs synthesized by FG-DMs of the joint distribution $P({\bf x},{\bf y})$ of image $\bf x$ and condition $\bf y$. The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
+                </p>
+                <img src="./static/images/teaser.png"
+                     class="interpolation-image"
+                     alt="Image synthesis by FG-DMs."/>
+              </div>
+
+        </div>
+      </div>
+    </div>
+
+          
 
     <!-- Animation. -->
     <div class="columns is-centered">
