@@ -255,6 +255,24 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <!-- Teaser. -->
+    <div class="columns is-centered">
+      <!-- Editing. -->
+      <div class="column">
+        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, canny and normal maps</h2>
+            <div class="columns is-centered">
+              <div class="column content">
+                <p>
+                  Condition/image pairs synthesized by FG-DMs of the joint distribution $P({\bf x},{\bf y})$ of image $\bf x$ and condition $\bf y$. The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
+                </p>
+                <img src="./static/images/teaser.png"
+                     class="interpolation-image"
+                     alt="Image synthesis by FG-DMs."/>
+              </div>
+
+        </div>
+      </div>
+    </div>
 
     <div class="columns is-centered">
       <!-- Editing. -->
@@ -275,25 +293,6 @@
       </div>
     </div>
     <!--/ Matting. -->
-    
-    <!-- Teaser. -->
-    <div class="columns is-centered">
-      <!-- Editing. -->
-      <div class="column">
-        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, canny and normal maps</h2>
-            <div class="columns is-centered">
-              <div class="column content">
-                <p>
-                  Condition/image pairs synthesized by FG-DMs of the joint distribution $P({\bf x},{\bf y})$ of image $\bf x$ and condition $\bf y$. The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
-                </p>
-                <img src="./static/images/teaser.png"
-                     class="interpolation-image"
-                     alt="Image synthesis by FG-DMs."/>
-              </div>
-
-        </div>
-      </div>
-    </div>
 
           
 
@@ -340,7 +339,7 @@
         <h3 class="title is-4">Editing generated segmentation masks</h3>
         <div class="content has-text-justified">
           <p>
-            Using <span class="dnerf">FG-DM</span>, you can generate and edit sehmentations to achieve desired spatial control of the objects.
+            Using <span class="dnerf">FG-DM</span>, you can generate and edit segmentations to achieve desired spatial control of the objects.
           </p>
         </div>
         <div class="content has-text-centered">
@@ -420,7 +419,7 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is borrowed from <a rel="nerfies"
+            This website is borrowed from nerfies<a rel="nerfies"
                                                 href="https://github.com/nerfies/nerfies.github.io">
                                           </a>.
           </p>
