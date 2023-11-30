@@ -39,6 +39,9 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
 </head>
 <body>
 
@@ -278,7 +281,7 @@
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Condition/image pairs synthesized by FG-DMs of the joint distribution $P({\bf x},{\bf y})$ of image $\bf x$ and condition $\bf y$. The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
+                  Condition/image pairs synthesized by FG-DMs of the joint distribution \(P(\mathbf{x},\mathbf{y})\) of image \(\mathbf{x}\) and condition \(\mathbf{y}\). The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
                 </p>
                 <img src="./static/images/teaser.png"
                      class="interpolation-image"
@@ -295,10 +298,22 @@
         <h2 class="title is-3">Controllable image Generation and editing with the FG-DM. </h2>
         <div class="columns is-centered">
           <div class="column content">
-            <p>
+            <!-- <p>
               Qualitative results for editing segmentation, depth and canny maps to achieve desired spatial control, add new objects and generate text in images.
               Each example depicts a pair $({\bf y},{\bf x})$ synthesized by the FG-DM of the joint $P({\bf x},{\bf y})$ in the top row. The condition map $\bf y$ was then manually edited as shown in the bottom row and the image $\bf x$ resynthesized using the factor $P({\bf x}|{\bf y})$. For the semantic map editing, we show the result of fusing two generated segmentation masks (second mask shown in the bottom right) using our semantic editing tool. The synthesized pose maps are also shown inside the generated images with segmentations.
+            </p> -->
+            <p>
+              In our experiments, we explored qualitative results for manipulating segmentation, depth, and Canny maps to achieve precise spatial control, adding new objects, and incorporating text into images. Each example is represented by a pair \((\mathbf{y},\mathbf{x})\), synthesized by the FG-DM of the joint \(P(\mathbf{x},\mathbf{y})\), showcased in the top row.
             </p>
+            
+            <p>
+              To demonstrate the editing capabilities, the condition map \(\mathbf{y}\) underwent manual adjustments, as illustrated in the bottom row. The resynthesis of the image \(\mathbf{x}\) was achieved using the conditional probability factor \(P(\mathbf{x}|\mathbf{y})\).
+            </p>
+            
+            <p>
+              For semantic map editing, we present the results of fusing two generated segmentation masks (the second mask is displayed in the bottom right corner) using our specialized semantic editing tool. Additionally, the synthesized pose maps are embedded within the generated images, accompanied by their respective segmentations.
+            </p>
+            
             <img src="./static/images/teaser-edit.png"
                  class="interpolation-image"
                  alt="Image synthesis by editing semantic maps using FG-DMs."/>
