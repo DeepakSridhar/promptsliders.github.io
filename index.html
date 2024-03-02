@@ -301,7 +301,7 @@
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  FG-DM implemented by Adapting Stable Diffusion for the distribution \(P(\mathbf{x}, \mathbf{y}^1,  \mathbf{y}^2 | \mathbf{y}^3)\) of image \(\mathbf{x}\), segmentation mask \(\mathbf{y}^2\), and pose map \(\mathbf{y}^1\), given text prompt \(\mathbf{y}^3\). Each factor (conditional probability written at the top of each figure) is implemented by adapting a pretrained Stable Diffusion to generate the visual conditions. Note that the encoder-decoder pair and SD backbone is shared among all factors thereby reducing the total number of parameters of the model. Conditional generation chains are trained at a lower resolution for better inference throughput.
+                  FG-DM implemented for the distribution \(P(\mathbf{x}, \mathbf{y}^1,  \mathbf{y}^2 | \mathbf{y}^3)\) of image \(\mathbf{x}\), segmentation mask \(\mathbf{y}^2\), and pose map \(\mathbf{y}^1\), given text prompt \(\mathbf{y}^3\). Each factor (conditional probability written at the top of each figure) is implemented by adapting a pretrained Stable Diffusion to generate the visual conditions. Note that the encoder-decoder pair and SD backbone is shared among all factors thereby reducing the total number of parameters of the model. Conditional generation chains are trained at a lower resolution for a better inference throughput.
                 </p>
                 <img src="./static/images/arch_.png"
                      class="interpolation-image"
