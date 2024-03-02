@@ -301,7 +301,7 @@
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Two implementations of a FG-DM of the distribution \(P(\mathbf{x}, \mathbf{y}^1,  \mathbf{y}^2 | \mathbf{y}^3)\) of image \(\mathbf{x}\), segmentation mask \(\mathbf{y}^2\), and pose map \(\mathbf{y}^1\), given text prompt \(\mathbf{y}^3\), for the factor graph shown as inset. Each factor (conditional probability written at the bottom of each figure) is implemented by a VC-DM, that maps a noise code  into an image using a Markov chain implemented by a U-net network. The FG-DM combines multiple Markov chains, where a chain of higher level is conditioned by the variable(s) of lower levels. Conditioning can be done in two ways. Top: concatenation of inputs, bottom: adapter-based feature modulation. We employ concatenation for models trained from scratch and modulation for adapting pretrained foundational text-to-image models.
+                  FG-DM implemented by Adapting Stable Diffusion for the distribution \(P(\mathbf{x}, \mathbf{y}^1,  \mathbf{y}^2 | \mathbf{y}^3)\) of image \(\mathbf{x}\), segmentation mask \(\mathbf{y}^2\), and pose map \(\mathbf{y}^1\), given text prompt \(\mathbf{y}^3\). Each factor (conditional probability written at the top of each figure) is implemented by adapting a pretrained Stable Diffusion to generate the visual conditions. Note that the encoder-decoder pair and SD backbone is shared among all factors thereby reducing the total number of parameters of the model. Conditional generation chains are trained at a lower resolution for better inference throughput.
                 </p>
                 <img src="./static/images/arch_.png"
                      class="interpolation-image"
