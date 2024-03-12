@@ -283,7 +283,7 @@
                 <p>
                   Comparison with traditional diffusion models that either use post-processing or off-the-shelf models for condition extraction. FG-DM models the joint distribution of an image and conditioning variables (e.g., segmentation, depth, normal, canny or pose maps) which allows creative flexibility, editing controllability and attribute recall verification ability unlike the standard diffusion model pipeline.
                 </p>
-                <img src="./static/images/introd.pdf"
+                <img src="./static/images/introd.png"
                      class="interpolation-image"
                      alt="Image synthesis by FG-DMs."/>
               </div>
@@ -303,7 +303,7 @@
                 <p>
                   FG-DM implemented for the distribution \(P(\mathbf{x}, \mathbf{y}^1,  \mathbf{y}^2 | \mathbf{y}^3)\) of image \(\mathbf{x}\), segmentation mask \(\mathbf{y}^2\), and pose map \(\mathbf{y}^1\), given text prompt \(\mathbf{y}^3\). Each factor (conditional probability written at the top of each figure) is implemented by adapting a pretrained Stable Diffusion to generate the visual conditions. Note that the encoder-decoder pair and SD backbone is shared among all factors thereby reducing the total number of parameters of the model. Conditional generation chains are trained at a lower resolution for a better inference throughput.
                 </p>
-                <img src="./static/images/arch.pdf"
+                <img src="./static/images/arch.png"
                      class="interpolation-image"
                      alt="Image synthesis by FG-DMs."/>
               </div>
