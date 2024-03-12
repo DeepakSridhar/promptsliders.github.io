@@ -237,7 +237,22 @@
             synthesis.
           </p>
           <p>
-            FG-DMs implement a factor graph of the conditioning variables in a sequential process 
+            FG-DMs model the joint distribution of images and conditioning variables, 
+            such as semantic, canny, depth or pose maps via a factor graph decomposition. 
+            This joint structure has several advantages, including explainability at intermediate 
+            levels, support for semi-automated fine-grained editing, ability to produce labeled
+             datasets for the training of downstream models such as segmentation, training with 
+             missing data, and continual learning where new conditioning variables can be added 
+             with minimal or no modifications to the existing structure. We implement FG-DM by 
+             adapting a pre-trained Stable Diffusion model using only COCO dataset and show that 
+             it is effective in generating all visual conditions represented as RGB inputs while 
+             retaining its generalization ability. To better adapt to the conditioning variables, 
+             we introduce an attention distillation loss that improves the fidelity of the generated 
+             conditions. It leverages the notion that the attention maps must be similar across 
+             all the factors for a given input prompt. We also show that training FG-DMs from scratch 
+             produce images of high quality (FID) and diversity (LPIPS) on multiple benchmark datasets 
+             such as CelebA-HQ, ADE20K, Cityscapes and COCO.
+            <!-- implement a factor graph of the conditioning variables in a sequential process 
             where the highest node corresponds to the image denoising Markov chain conditioned by 
             all or few of the conditioning variables in the lower levels of the graph. This joint 
             structure has several advantages, including ability to synthesize all conditioning 
@@ -249,7 +264,7 @@
             introduced (i) training from scratch and (ii) adapting pretrained foundational model. 
             Experiments on multiple benchmark datasets such as CelebAMask-HQ, ADE20K, Cityscapes 
             and CoCo produce images of high quality (FID) and achieves state-of-the-art diversity 
-            in terms of LPIPS metrics.
+            in terms of LPIPS metrics. -->
           </p>
         </div>
       </div>
