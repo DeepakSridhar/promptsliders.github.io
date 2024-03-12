@@ -321,9 +321,13 @@
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Condition/image pairs synthesized by FG-DMs of the joint distribution \(P(\mathbf{x},\mathbf{y})\) of image \(\mathbf{x}\) and condition \(\mathbf{y}\). The FG-DMs are trained on CoCo dataset by adapting Stable Diffusion v1.4 with 256x256 image size. The depth maps extracted from the generated images using MIDAS detector is also shown in the bottom right of the generated depth maps. The extracted depth maps lack details as compared to the generated ones by FG-DM.
+                  Synthesized Segmentation/Depth/Canny/Normal maps and the corresponding images by
+FG-DMs adapted from SD using COCO dataset. FG-DMs generalize well to prompts beyond
+the training dataset. The first two columns show the benefit of explainability with FG-DM which
+allows verifying intermediate conditions to understand the hallucinations (mixup of a chimp and
+a person) of SD which are opaque otherwise.
                 </p>
-                <img src="./static/images/teaser.png"
+                <img src="./static/images/teaser_all.png"
                      class="interpolation-image"
                      alt="Image synthesis by FG-DMs."/>
               </div>
@@ -351,10 +355,10 @@
             </p>
             
             <p>
-              For semantic map editing, we present the results of fusing two generated segmentation masks (the second mask is displayed in the bottom right corner) using our specialized semantic editing tool. Additionally, the synthesized pose maps are embedded within the generated images, accompanied by their respective segmentations.
+              For semantic map editing, we present the results of fusing two generated segmentation masks (the second mask is displayed in the bottom right corner) using our specialized semantic editing tool. Additionally, the synthesized pose maps are shown beside the generated images, accompanied by their respective segmentations.
             </p>
             
-            <img src="./static/images/teaser-edit.png"
+            <img src="./static/images/teaser_edit.png"
                  class="interpolation-image"
                  alt="Image synthesis by editing semantic maps using FG-DMs."/>
           </div>
