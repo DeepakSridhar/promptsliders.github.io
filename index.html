@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Factor Graph Diffusion Models for High Fidelity, Consistent, and Controllable Image Synthesis.">
+        content="Adapting Diffusion Models for Improved Prompt
+        Compliance and Controllable Image Synthesis.">
   <meta name="keywords" content="Diffusion Models, FG-DM, Image generation and editing">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Factor Graph Diffusion Models for High Fidelity, Consistent, and Controllable Image Synthesis</title>
+  <title>Adapting Diffusion Models for Improved Prompt
+    Compliance and Controllable Image Synthesis</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -71,7 +73,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Factor Graph Diffusion: Adapting Foundational Models for Creative and Controllable Image Synthesis</h1>
+          <h1 class="title is-1 publication-title">Factor Graph Diffusion: Adapting Diffusion Models for Improved Prompt Compliance and Controllable Image Synthesis</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://deepaksridhar.github.io">Deepak Sridhar</a><sup>1</sup>,</span>
@@ -233,12 +235,34 @@
           <p>
             We present a novel Factor Graph Diffusion Model (FG-DM) framework for modeling 
             the joint distribution of images and conditioning variables (such as segmentation, 
-            depth, normal and canny masks) for high fidelity, consistent and controllable image 
+            depth, normal and sketch masks) for improved prompt consistency, high fidelity, and controllable image 
             synthesis.
           </p>
           <p>
-            FG-DMs model the joint distribution of images and conditioning variables, 
-            such as semantic, canny, depth or pose maps via a factor graph decomposition. 
+            Recent advances in generative modeling with diffusion processes (DPs) enabled breakthroughs
+            in image synthesis. Despite impressive image quality, these models have various prompt 
+            compliance problems, including low recall in generating multiple objects, difficulty in 
+            generating text in images, and meeting constraints like object locations and pose. For 
+            fine-grained editing and manipulation, they also require fine-grained semantic or instance 
+            maps that are tedious to produce manually. While prompt compliance can be enhanced by addition 
+            of loss functions at inference, this is time consuming and does not scale to complex scenes.  
+            To overcome these limitations, this work introduces FG-DMs that models the joint distribution 
+            of images and conditioning variables, such as semantic, sketch, depth or normal maps via a 
+            factor graph decomposition. This joint structure has several advantages, including support 
+            for efficient sampling based prompt compliance schemes, which produce images of high object 
+            recall, semi-automated fine-grained editing, explainability at intermediate levels, ability 
+            to produce labeled datasets for the training of downstream models such as segmentation or 
+            depth, training with missing data, and continual learning where new conditioning variables 
+            can be added with minimal or no modifications to the existing structure. We propose an 
+            implementation of FG-DMs by adapting a pre-trained Stable Diffusion (SD) model to implement 
+            all FG-DM factors, using only COCO dataset, and show that it is effective in generating images 
+            with 15\% higher recall than SD while retaining its generalization ability. We introduce an 
+            attention distillation loss that encourages consistency among the attention maps of all 
+            factors, improving the fidelity of the generated conditions and image. We also show that 
+            training FG-DMs from scratch on MM-CelebA-HQ, Cityscapes, ADE20K, and COCO produce images of 
+            high quality (FID) and diversity (LPIPS).
+            <!-- FG-DMs model the joint distribution of images and conditioning variables, 
+            such as semantic, sketch, depth or pose maps via a factor graph decomposition. 
             This joint structure has several advantages, including explainability at intermediate 
             levels, support for semi-automated fine-grained editing, ability to produce labeled
              datasets for the training of downstream models such as segmentation, training with 
@@ -251,7 +275,7 @@
              conditions. It leverages the notion that the attention maps must be similar across 
              all the factors for a given input prompt. We also show that training FG-DMs from scratch 
              produce images of high quality (FID) and diversity (LPIPS) on multiple benchmark datasets 
-             such as CelebA-HQ, ADE20K, Cityscapes and COCO.
+             such as CelebA-HQ, ADE20K, Cityscapes and COCO. -->
             <!-- implement a factor graph of the conditioning variables in a sequential process 
             where the highest node corresponds to the image denoising Markov chain conditioned by 
             all or few of the conditioning variables in the lower levels of the graph. This joint 
@@ -296,7 +320,7 @@
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Comparison with traditional diffusion models that either use post-processing or off-the-shelf models for condition extraction. FG-DM models the joint distribution of an image and conditioning variables (e.g., segmentation, depth, normal, canny or pose maps) which allows creative flexibility, editing controllability and attribute recall verification ability unlike the standard diffusion model pipeline.
+                  Comparison with traditional diffusion models for generating images with high object recall. FG-DM models the joint distribution of an image and conditioning variables (e.g., segmentation, depth, normal, sketch or pose maps) which allows creative flexibility, editing controllability and faster attribute recall verification ability unlike the standard diffusion model pipeline.
                 </p>
                 <img src="./static/images/introd.png"
                      class="interpolation-image"
@@ -332,11 +356,11 @@
     <div class="columns is-centered">
       <!-- Editing. -->
       <div class="column">
-        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, canny and normal maps</h2>
+        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, sketch and normal maps</h2>
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Synthesized Segmentation/Depth/Canny/Normal maps and the corresponding images by
+                  Synthesized Segmentation/Depth/Sketch/Normal maps and the corresponding images by
 FG-DMs adapted from SD using COCO dataset. FG-DMs generalize well to prompts beyond
 the training dataset. Although the FG-DM is only trained to associate persons with black
  semantic maps segments, it also assigns the chimp, a class that it was not trained on, 
@@ -365,11 +389,11 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
         <div class="columns is-centered">
           <div class="column content">
             <!-- <p>
-              Qualitative results for editing segmentation, depth and canny maps to achieve desired spatial control, add new objects and generate text in images.
+              Qualitative results for editing segmentation, depth and sketch maps to achieve desired spatial control, add new objects and generate text in images.
               Each example depicts a pair $({\bf y},{\bf x})$ synthesized by the FG-DM of the joint $P({\bf x},{\bf y})$ in the top row. The condition map $\bf y$ was then manually edited as shown in the bottom row and the image $\bf x$ resynthesized using the factor $P({\bf x}|{\bf y})$. For the semantic map editing, we show the result of fusing two generated segmentation masks (second mask shown in the bottom right) using our semantic editing tool. The synthesized pose maps are also shown inside the generated images with segmentations.
             </p> -->
             <p>
-              In our experiments, we explored qualitative results for manipulating segmentation, depth, and Canny maps to achieve precise spatial control, resizing and adding new objects, and incorporating text into images. Each example is represented by a pair \((\mathbf{y},\mathbf{x})\), synthesized by the FG-DM of the joint \(P(\mathbf{x},\mathbf{y})\), showcased in the top row.
+              In our experiments, we explored qualitative results for manipulating segmentation, depth, and sketch maps to achieve precise spatial control, resizing and adding new objects, and incorporating text into images. Each example is represented by a pair \((\mathbf{y},\mathbf{x})\), synthesized by the FG-DM of the joint \(P(\mathbf{x},\mathbf{y})\), showcased in the top row.
             </p>
             
             <p>
@@ -506,7 +530,7 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
 </section>
 
 
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{deepak2023fgdm
@@ -516,7 +540,7 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
       year      = {2023},
     }</code></pre>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
@@ -534,9 +558,8 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
       <div class="column is-8">
         <div class="content">
           <p>
-            This website template is borrowed from <a rel="nerfies"
-                                                href="https://github.com/nerfies/nerfies.github.io">
-                                          </a>nerfies.
+            This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies
+                                          </a>.
           </p>
         </div>
       </div>
