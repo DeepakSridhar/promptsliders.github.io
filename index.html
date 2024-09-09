@@ -3,12 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Adapting Diffusion Models for Improved Prompt
-        Compliance and Controllable Image Synthesis.">
-  <meta name="keywords" content="Diffusion Models, FG-DM, Image generation and editing">
+        content="Prompt Sliders for Fine-Grained Control, Editing and Erasing of Concepts in Diffusion Models.">
+  <meta name="keywords" content="Diffusion Models, Sliders and editing">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Adapting Diffusion Models for Improved Prompt
-    Compliance and Controllable Image Synthesis</title>
+  <title>Prompt Sliders for Fine-Grained Control, Editing and Erasing of Concepts in Diffusion Models</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -77,11 +75,6 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://deepaksridhar.github.io">Deepak Sridhar</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://github.com/abhishek-peri">Abhishek Peri</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://github.com/rohithreddy0087">Rohith Reddy Rachala</a><sup>1</sup>,
-            </span>
             <span class="author-block">
               <a href="http://www.svcl.ucsd.edu/~nuno/">Nuno Vasconcelos</a><sup>1</sup>
             </span>
@@ -233,62 +226,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present a novel Factor Graph Diffusion Model (FG-DM) framework for modeling 
-            the joint distribution of images and conditioning variables (such as segmentation, 
-            depth, normal and sketch masks) for improved prompt consistency, high fidelity, and controllable image 
-            synthesis.
+            We present a textual inversion method for learning prompt embeddings for specific attributes/concepts using textual inversion method. 
+            The strength of the concept can be controlled by manipulating the weight of the learned prompts. 
           </p>
           <p>
-            Recent advances in generative modeling with diffusion processes (DPs) enabled breakthroughs
-            in image synthesis. Despite impressive image quality, these models have various prompt 
-            compliance problems, including low recall in generating multiple objects, difficulty in 
-            generating text in images, and meeting constraints like object locations and pose. For 
-            fine-grained editing and manipulation, they also require fine-grained semantic or instance 
-            maps that are tedious to produce manually. While prompt compliance can be enhanced by addition 
-            of loss functions at inference, this is time consuming and does not scale to complex scenes.  
-            To overcome these limitations, this work introduces FG-DMs that models the joint distribution 
-            of images and conditioning variables, such as semantic, sketch, depth or normal maps via a 
-            factor graph decomposition. This joint structure has several advantages, including support 
-            for efficient sampling based prompt compliance schemes, which produce images of high object 
-            recall, semi-automated fine-grained editing, explainability at intermediate levels, ability 
-            to produce labeled datasets for the training of downstream models such as segmentation or 
-            depth, training with missing data, and continual learning where new conditioning variables 
-            can be added with minimal or no modifications to the existing structure. We propose an 
-            implementation of FG-DMs by adapting a pre-trained Stable Diffusion (SD) model to implement 
-            all FG-DM factors, using only COCO dataset, and show that it is effective in generating images 
-            with 15\% higher recall than SD while retaining its generalization ability. We introduce an 
-            attention distillation loss that encourages consistency among the attention maps of all 
-            factors, improving the fidelity of the generated conditions and image. We also show that 
-            training FG-DMs from scratch on MM-CelebA-HQ, Cityscapes, ADE20K, and COCO produce images of 
-            high quality (FID) and diversity (LPIPS).
-            <!-- FG-DMs model the joint distribution of images and conditioning variables, 
-            such as semantic, sketch, depth or pose maps via a factor graph decomposition. 
-            This joint structure has several advantages, including explainability at intermediate 
-            levels, support for semi-automated fine-grained editing, ability to produce labeled
-             datasets for the training of downstream models such as segmentation, training with 
-             missing data, and continual learning where new conditioning variables can be added 
-             with minimal or no modifications to the existing structure. We implement FG-DM by 
-             adapting a pre-trained Stable Diffusion model using only COCO dataset and show that 
-             it is effective in generating all visual conditions represented as RGB inputs while 
-             retaining its generalization ability. To better adapt to the conditioning variables, 
-             we introduce an attention distillation loss that improves the fidelity of the generated 
-             conditions. It leverages the notion that the attention maps must be similar across 
-             all the factors for a given input prompt. We also show that training FG-DMs from scratch 
-             produce images of high quality (FID) and diversity (LPIPS) on multiple benchmark datasets 
-             such as CelebA-HQ, ADE20K, Cityscapes and COCO. -->
-            <!-- implement a factor graph of the conditioning variables in a sequential process 
-            where the highest node corresponds to the image denoising Markov chain conditioned by 
-            all or few of the conditioning variables in the lower levels of the graph. This joint 
-            structure has several advantages, including ability to synthesize all conditioning 
-            variables with/without user input, end-to-end training, support for detailed user 
-            interaction and fine-grained editing, ability to produce labeled datasets for the 
-            training of downstream models, training with missing data, and continual learning 
-            where new conditioning variables can be added with minimal or no modifications to 
-            the existing structure. To demonstrate this, two implementations of FG-DM are 
-            introduced (i) training from scratch and (ii) adapting pretrained foundational model. 
-            Experiments on multiple benchmark datasets such as CelebAMask-HQ, ADE20K, Cityscapes 
-            and CoCo produce images of high quality (FID) and achieves state-of-the-art diversity 
-            in terms of LPIPS metrics. -->
+            Diffusion models have recently surpassed GANs in image synthesis and editing, offering superior image quality and diversity. However, achieving precise control over attributes in generated images remains a challenge. Concept Sliders introduced a method for fine-grained image control and editing by learning concepts (attributes/objects). However, this approach adds parameters and increases inference time due to the loading and unloading of Low-Rank Adapters (LoRAs) used for learning concepts. These adapters are model-specific and require retraining for different architectures, such as Stable Diffusion (SD) v1.5 and SD-XL. In this paper, we propose a straightforward textual inversion method to learn concepts through text embeddings, which are generalizable across models that share the same text encoder, including different versions of the SD model. We refer to our method as {Prompt Sliders}. Besides learning new concepts, we also show that prompt sliders can be used to erase undesirable concepts such as artistic styles or mature content. Our method is 30\% faster than using LoRAs because it eliminates the need to load and unload adapters and introduces no additional parameters aside from the target concept text embedding. Each concept embedding only requires 3KB of storage compared to the 8922 KB or more required for each LoRA adapter making our approach more computationally efficient.
           </p>
         </div>
       </div>
@@ -316,15 +258,24 @@
     <div class="columns is-centered">
       <!-- Editing. -->
       <div class="column">
-        <h2 class="title is-3">FG-DM vs Traditional Models</h2>
+        <h2 class="title is-3">Prompt Sliders for fine-grained control of attributes with textual inversion. </h2>
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Comparison with traditional diffusion models for generating images with high object recall. FG-DM models the joint distribution of an image and conditioning variables (e.g., segmentation, depth, normal, sketch or pose maps) which allows creative flexibility, editing controllability and faster attribute recall verification ability unlike the standard diffusion model pipeline.
+                  Each row in the figure shows a corresponding concept depicted on top of the image along with its control strength $\alpha$ that enhances the target concept as the guidance strength increases. The prompts for the images from top to bottom are listed as follows (in order) - {"A portrait of an woman with a warm smile", "A woman with voluminous hair cascading over her shoulders, posing for a fashion shoot", "A fantasy character", "A person caught off guard by unexpected news"
                 </p>
-                <img src="./static/images/introd.png"
-                     class="interpolation-image"
-                     alt="Image synthesis by FG-DMs."/>
+                <embed src="./static/images/teaser-1.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Image synthesis by Prompt Sliders1."/>
+                <embed src="./static/images/teaser-1.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Image synthesis by Prompt Sliders2."/>         
               </div>
 
         </div>
@@ -340,11 +291,15 @@
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  FG-DM implemented for the distribution \(P(\mathbf{x}, \mathbf{y}^1,  \mathbf{y}^2 | \mathbf{y}^3)\) of image \(\mathbf{x}\), segmentation mask \(\mathbf{y}^2\), and pose map \(\mathbf{y}^1\), given text prompt \(\mathbf{y}^3\). Each factor (conditional probability written at the top of each figure) is implemented by adapting a pretrained Stable Diffusion to generate the visual conditions. Note that the encoder-decoder pair and SD backbone is shared among all factors thereby reducing the total number of parameters of the model. Conditional generation chains are trained at a lower resolution for a better inference throughput.
+                  Left: Training of textual Prompt Sliders. Right: Training of visual Prompt
+Sliders.
                 </p>
-                <img src="./static/images/arch.png"
-                     class="interpolation-image"
-                     alt="Image synthesis by FG-DMs."/>
+                <embed src="./static/images/arch.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Prompt Slider framework."/> 
               </div>
 
         </div>
@@ -356,26 +311,18 @@
     <div class="columns is-centered">
       <!-- Editing. -->
       <div class="column">
-        <h2 class="title is-3">Qualitative results of FG-DMs with semantic, depth, sketch and normal maps</h2>
+        <h2 class="title is-3">Comparison with Concept Sliders</h2>
             <div class="columns is-centered">
               <div class="column content">
                 <p>
-                  Synthesized Segmentation/Depth/Sketch/Normal maps and the corresponding images by
-FG-DMs adapted from SD using COCO dataset. FG-DMs generalize well to prompts beyond
-the training dataset. Although the FG-DM is only trained to associate persons with black
- semantic maps segments, it also assigns the chimp, a class that it was not trained on, 
- to that color. This shows that the FG-DM can integrate the prior knowledge by SD that
-  “chimps and persons are similar" into the
-segmentation task. Conversely, the similarity between chimps and people might induce SD 
-to synthesize a chimp in response to a prompt for people, or vice-versa. This is shown in the 
-bottom left of the Figure where the FG-DM correctly synthesizes different colors for the chimp 
-and the person, but the ControlNet fails. While the black box nature of SD makes these errors opaque,
- the FG-DM allows inspection of the intermediate conditions to understand these hallucinations. 
- This illustrates its benefits in terms of explainability.
+                  Unlike Concept Sliders which require careful hyperparameter tuning for learning the target concept, Prompt Sliders are simple to optimize and work well for diverse prompts. The corresponding prompts for the images in the figure from left to right are as follows. {"A whimsical dragon, full of texture and detail", "A bustling city street, with people walking", "A cat lounging comfortably on a sofa", "A child opening a gift", "A child playing with a favorite toy"}.
                 </p>
-                <img src="./static/images/teaser_all.png"
-                     class="interpolation-image"
-                     alt="Image synthesis by FG-DMs."/>
+                <embed src="./static/images/comparison-1.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Comparison."/>
               </div>
 
         </div>
@@ -385,24 +332,18 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
     <div class="columns is-centered">
       <!-- Editing. -->
       <div class="column">
-        <h2 class="title is-3">Text-based Image Editing with FG-DM and Inversion. </h2>
+        <h2 class="title is-3">Erasing concepts with Prompt Sliders. </h2>
         <div class="columns is-centered">
           <div class="column content">
-            <!-- <p>
-              Qualitative results for editing segmentation, depth and sketch maps to achieve desired spatial control, add new objects and generate text in images.
-              Each example depicts a pair $({\bf y},{\bf x})$ synthesized by the FG-DM of the joint $P({\bf x},{\bf y})$ in the top row. The condition map $\bf y$ was then manually edited as shown in the bottom row and the image $\bf x$ resynthesized using the factor $P({\bf x}|{\bf y})$. For the semantic map editing, we show the result of fusing two generated segmentation masks (second mask shown in the bottom right) using our semantic editing tool. The synthesized pose maps are also shown inside the generated images with segmentations.
-            </p> -->
             <p>
-              We have experimented with text-based editing of both real images and their segmentation masks using FGDM and LEDITS++ inversion. The top of Figure shown below refers to inversion of the segmentation mask.
-            </p>
-            
-            <p>
-              The bottom part of Figure below shows the comparison of LEDITS++ editing with inversion by SD and by the image synthesis factor of the FG-DM.
-            </p>
-            
-            <img src="./static/images/inversion_edit_fgdm.png"
-                 class="interpolation-image"
-                 alt="Image synthesis by editing real image and extacted semantic map using FG-DM."/>
+              Erasing concepts from pretrained diffusion models using Prompt Sliders. The prompts used to generate the image are shown on top of each image.
+            </p>            
+            <embed src="./static/images/erasing-1.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Erasing."/>
           </div>
 
         </div>
@@ -413,28 +354,19 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
     <div class="columns is-centered">
       <!-- Editing. -->
       <div class="column">
-        <h2 class="title is-3">Controllable image Generation and editing with the FG-DM. </h2>
+        <h2 class="title is-3">Transferring the trained prompt sliders from SD-XL to SD v1.5 model. </h2>
         <div class="columns is-centered">
           <div class="column content">
-            <!-- <p>
-              Qualitative results for editing segmentation, depth and sketch maps to achieve desired spatial control, add new objects and generate text in images.
-              Each example depicts a pair $({\bf y},{\bf x})$ synthesized by the FG-DM of the joint $P({\bf x},{\bf y})$ in the top row. The condition map $\bf y$ was then manually edited as shown in the bottom row and the image $\bf x$ resynthesized using the factor $P({\bf x}|{\bf y})$. For the semantic map editing, we show the result of fusing two generated segmentation masks (second mask shown in the bottom right) using our semantic editing tool. The synthesized pose maps are also shown inside the generated images with segmentations.
-            </p> -->
             <p>
-              In our experiments, we explored qualitative results for manipulating segmentation, depth, and sketch maps to achieve precise spatial control, resizing and adding new objects, and incorporating text into images. Each example is represented by a pair \((\mathbf{y},\mathbf{x})\), synthesized by the FG-DM of the joint \(P(\mathbf{x},\mathbf{y})\), showcased in the top row.
+              The corresponding prompts for the images in the figure from left to right in the top row, and from left to right in the bottom row are as follows. {"A photo of a person", "A man with a thick, beard, giving a charming smile", "A bride getting ready for her wedding day", "A cozy living room"}.
             </p>
+            <embed src="./static/images/sd-15-transfer.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Transfer SD15."/>
             
-            <p>
-              To demonstrate the editing capabilities, the condition map \(\mathbf{y}\) underwent manual adjustments, as illustrated in the bottom row. The resynthesis of the image \(\mathbf{x}\) was achieved using the conditional probability factor \(P(\mathbf{x}|\mathbf{y})\).
-            </p>
-            
-            <p>
-              For semantic map editing, we present the results of fusing two generated segmentation masks (the synthesized second mask (airplane) is not shown here) using our specialized semantic editing tool. Additionally, the synthesized pose maps are shown beside the generated images, accompanied by their respective segmentations.
-            </p>
-            
-            <img src="./static/images/teaser_edit.png"
-                 class="interpolation-image"
-                 alt="Image synthesis by editing semantic maps using FG-DMs."/>
           </div>
 
         </div>
@@ -445,15 +377,18 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
     <div class="columns is-centered">
       <!-- Editing. -->
       <div class="column">
-        <h2 class="title is-3">Examples of Images generated by FG-DM after editing and comparison with popular text-to-image models. </h2>
+        <h2 class="title is-3">Composition of multiple concepts. </h2>
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              The generated semantic masks of the squirrel and rhino examples in first column are used to obtain the edited masks as shown in the middle. The corresponding generated images by FG-DM are shown to the right of the masks. Images generated (randomly sampled) by Stable Diffusion v1.4 and v1.5 for the same prompt “An image of a giant squirrel beside a small rhino ” is shown on the far right.
+              The input prompt for all the images are "A photo of a person" followed by the concept tokens. Concepts are appended to the prompt sequentially and is depicted in the figure from left to right in the top row, then continues from left to right in the bottom row.
             </p>
-            <img src="./static/images/teaser-squirrel-rhino.png"
-                 class="interpolation-image"
-                 alt="Generalization of FG-DM and generating unrealistic prompts using FG-DMs."/>
+            <embed src="./static/images/composition-1.pdf"
+                class="interpolation-image"
+                type="application/pdf"
+                width="100%"
+                height="500px"
+                alt="Transfer SD15."/>
           </div>
 
         </div>
@@ -462,98 +397,6 @@ and the person, but the ControlNet fails. While the black box nature of SD makes
     <!--/ editing. -->
 
           
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <!-- <h2 class="title is-3">Animation</h2> -->
-
-        <!-- Interpolating. -->
-        <!-- <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/> -->
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Editing generated segmentation masks</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">FG-DM</span>, you can generate and edit segmentations to achieve desired spatial control of the objects.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/seg-img-editor.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <!-- <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div> -->
-    <!--/ Concurrent Work. -->
-
   </div>
 </section>
 

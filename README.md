@@ -1,12 +1,12 @@
 # FG-DM
 
-This is the repository that contains source code for the [FG-DM website](https://deepaksridhar.github.io/factorgraphdiffusion.github.io).
+This is the repository that contains source code for the [Prompt Sliders website](https://deepaksridhar.github.io/promptsliders.github.io).
 
 If you find FG-DM useful for your work please cite:
 ```
-@article{deepak2023fgdm
-  author    = {Sridhar, Deepak and Peri, Abhishek and Rachala, Rohith Reddy and Vasconcelos, Nuno},
-  title     = {Factor Graph Diffusion Models for high fidelity, consistent and controllable image synthesis},
+@article{deepak2023prompt
+  author    = {Sridhar, Deepak and Vasconcelos, Nuno},
+  title     = {Prompt Sliders for Fine-Grained Control, Editing and Erasing of Concepts in Diffusion Models},
   journal   = {arxiV},
   year      = {2023},
 }
